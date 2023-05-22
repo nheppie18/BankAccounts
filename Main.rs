@@ -1,8 +1,8 @@
 use std::io;
 
 struct BankAccount {
-    identification: u32,
-    balance: u32,
+    identification: u64,
+    balance: u64,
 }
 
 impl BankAccount {
@@ -10,19 +10,19 @@ impl BankAccount {
         //self.id = id;
         //self.balance = amount;
     //}
-    fn set_id(&mut self, id: u32){
+    fn set_id(&mut self, id: u64){
         self.identification = id;
     }
 
-    fn set_balance(&mut self, amount: u32){
+    fn set_balance(&mut self, amount: u64){
         self.balance = amount;
     }
 
-    fn deposit(&mut self, amount: u32) {
+    fn deposit(&mut self, amount: u64) {
         self.balance += amount;
     }
     
-    fn withdraw(&mut self, amount: u32) {
+    fn withdraw(&mut self, amount: u64) {
         self.balance -= amount;
     }
 }
@@ -40,7 +40,7 @@ fn main() {
     println!("Option 3: withdraw from your account.");
     println!("Option 4: quit the program.");
     io::stdin().read_line(&mut input).expect("Failed to read line.");
-    let option: u32 = input.trim().parse().expect("Input is not an integer.");
+    let option: u64 = input.trim().parse().expect("Input is not an integer.");
     let mut acct1 = BankAccount {
         identification: 0,
         balance: 0,
@@ -55,7 +55,7 @@ fn main() {
         //get an initial balance from the user
         println!("Please provide an intitial balance for the account.");
         io::stdin().read_line(&mut input).expect("Failed to read line.");
-        let amount: u32 = input.trim().parse().expect("Input is not an integer.");
+        let amount: u64 = input.trim().parse().expect("Input is not an integer.");
 
         //create an instance of bank account
         acct1.set_id(id);
@@ -71,7 +71,7 @@ fn main() {
         if account_created == true {
             println!("How much do you want to deposit?: ");
             io::stdin().read_line(&mut input).expect("Failed to read line.");
-            let deposit_amount: u32 = input.trim().parse().expect("Input is not an integer.");
+            let deposit_amount: u64 = input.trim().parse().expect("Input is not an integer.");
             acct1.deposit(deposit_amount);
             println!("you have deposited ${}", deposit_amount);
         }
@@ -85,7 +85,7 @@ fn main() {
         if account_created == true {
             println!("How much do you want to withdraw?: ");
             io::stdin().read_line(&mut input).expect("Failed to read line.");
-            let withdraw_amount: u32 = input.trim().parse().expect("Input is not an integer.");
+            let withdraw_amount: u64 = input.trim().parse().expect("Input is not an integer.");
             acct1.withdraw(withdraw_amount);
             println!("you have withdrawn ${}", withdraw_amount);
         }
