@@ -29,9 +29,9 @@ impl BankAccount {
 
 
 fn main() {
- let mut input = String::new();
  let mut finished: bool = false;
  let mut account_created = false;
+ let mut input = String::new();
  
  while finished != true {
     println!("Select an option: ");
@@ -39,8 +39,10 @@ fn main() {
     println!("Option 2: deposit to your account.");
     println!("Option 3: withdraw from your account.");
     println!("Option 4: quit the program.");
+    input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line.");
     let option: u64 = input.trim().parse().expect("Input is not an integer.");
+    input.clear();
     let mut acct1 = BankAccount {
         identification: 0,
         balance: 0,
@@ -49,13 +51,17 @@ fn main() {
     if option == 1 {
         //get an id number from the user
         println!("Please provide an id number.");
+        input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read line.");
         let id: u32 = input.trim().parse().expect("Input is not an Integer");
+        input.clear();
         
         //get an initial balance from the user
         println!("Please provide an intitial balance for the account.");
+        input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read line.");
         let amount: u64 = input.trim().parse().expect("Input is not an integer.");
+        input.clear();
 
         //create an instance of bank account
         acct1.set_id(id);
@@ -70,8 +76,10 @@ fn main() {
     else if option == 2 {
         if account_created == true {
             println!("How much do you want to deposit?: ");
+            input = String::new();
             io::stdin().read_line(&mut input).expect("Failed to read line.");
             let deposit_amount: u64 = input.trim().parse().expect("Input is not an integer.");
+            input.clear();
             acct1.deposit(deposit_amount);
             println!("you have deposited ${}", deposit_amount);
         }
@@ -84,7 +92,9 @@ fn main() {
     else if option == 3 {
         if account_created == true {
             println!("How much do you want to withdraw?: ");
+            input = String::new();
             io::stdin().read_line(&mut input).expect("Failed to read line.");
+            input.clear();
             let withdraw_amount: u64 = input.trim().parse().expect("Input is not an integer.");
             acct1.withdraw(withdraw_amount);
             println!("you have withdrawn ${}", withdraw_amount);
